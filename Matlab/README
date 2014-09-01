@@ -1,4 +1,4 @@
-Author: Marianna Madry (madry@csc.kth.se)
+Author: Marianna Madry (marianna.madry@gmail.com)
 Date: July 2013
 
 We provide functions to load the RGB-D Stereo Object Category (SOC) Database files in the SYNCPC and CRD format to Matlab. 
