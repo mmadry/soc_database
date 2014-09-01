@@ -1,0 +1,35 @@
+Author: Marianna Madry (madry@csc.kth.se)
+Date: July 2013
+
+SOC2PCLReaders loads the RGB-D Stereo Object Category (SOC) Database files in the SYNCPC and CRD format to the PCL. 
+Please find attached:
+* two example apps:
+- 'read_syncpc' that loads a XYZ pointcloud in the SYNCPC format to the PCL and visualizes the loaded pointcloud
+- 'read_crd' that loads a XYZRGB pointcloud and correspoding xy image coordinates (left stereo image) from the CRD format to the PCL, and visualizes the loaded pointcloud.
+* a few SYNCPC and CRD test files in ./testdata
+
+===
+Build and compile:
+$ mkdir build && cd build
+$ cmake ..
+$ make
+
+===
+Description of the SYNCPC and CRD formats
+
+---
+CRD format structure on the example of 'mammal01_filterSegment_000.crd' file
+
+49423 							# total number of points in a 3D pointcloud
+310.731624 532.125305 32.501743 386 134 162 95 33 	# one line for each 3D point contains:
+
+* 310.731624 532.125305 32.501743 			# X, Y and Z coordinates of a point
+* 386 134 						# x and y coordinates in a left stereo image [pixels];
+* 162 95 33 						# R, G and B color of a point
+
+---
+SYNCPC format structure on the example of 'mammal01_filterSegment_000.syncpc' file
+
+syncpc 				# format name 
+2281 				# total number of point in a point cloud 
+337.824 521.693 -48.4363 	# X, Y and Z coordinates of a point 
