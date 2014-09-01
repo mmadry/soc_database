@@ -1,0 +1,28 @@
+Author: Marianna Madry (madry@csc.kth.se)
+Date: July 2013
+
+We provide functions to load the RGB-D Stereo Object Category (SOC) Database files in the SYNCPC and CRD format to Matlab. 
+- 'read_syncpc.m' loads a XYZ pointcloud in the SYNCPC format
+- 'read_crd.m' loads a XYZ pointcloud, corresponding colors and xy image coordinates (left stereo image) in the CRD format
+- 'example.m' shows how to use 'read_crd.m' and 'read_syncpc.m' functions, and visualizes loaded pointclouds
+A few examples of SYNCPC and CRD files are in ./testdata
+
+===
+Description of the SYNCPC and CRD formats
+
+---
+CRD format structure on the example of 'mammal01_filterSegment_000.crd' file
+
+49423 							# total number of points in a 3D pointcloud
+310.731624 532.125305 32.501743 386 134 162 95 33 	# one line for each 3D point contains:
+
+* 310.731624 532.125305 32.501743 			# X, Y and Z coordinates of a point
+* 386 134 						# x and y coordinates in a left stereo image [pixels];
+* 162 95 33 						# R, G and B color of a point
+
+---
+SYNCPC format structure on the example of 'mammal01_filterSegment_000.syncpc' file
+
+syncpc 				# format name 
+2281 				# total number of point in a point cloud 
+337.824 521.693 -48.4363 	# X, Y and Z coordinates of a point 
