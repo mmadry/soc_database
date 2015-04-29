@@ -1,5 +1,5 @@
 Author: Marianna Madry (marianna.madry@gmail.com)
-Date: July 2013
+Date: July 2012
 
 We provide functions to load the RGB-D Stereo Object Category (SOC) Database files in the SYNCPC and CRD format to Matlab. 
 - 'read_syncpc.m' loads a XYZ pointcloud in the SYNCPC format

@@ -1,5 +1,38 @@
-// Author: Marianna Madry (madry@csc.kth.se)
-// Date: July 2013
+/*********************************************************************
+* Software License Agreement (BSD License)
+*
+*  Copyright (c) 2012, Marianna Madry
+*  All rights reserved.
+*
+*  Contact: marianna.madry@gmail.com
+*
+*  Redistribution and use in source and binary forms, with or without
+*  modification, are permitted provided that the following conditions
+*  are met:
+*
+*   * Redistributions of source code must retain the above copyright
+*     notice, this list of conditions and the following disclaimer.
+*   * Redistributions in binary form must reproduce the above
+*     copyright notice, this list of conditions and the following
+*     disclaimer in the documentation and/or other materials provided
+*     with the distribution.
+*   * Neither the name of Willow Garage, Inc. nor the names of its
+*     contributors may be used to endorse or promote products derived
+*     from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+*  POSSIBILITY OF SUCH DAMAGE.
+********************************************************************/
 
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
@@ -7,36 +40,40 @@
 #include "SOC2PCLReader.h"
 
 void usage(const char* exec_name) {
-   cerr << "----------------------------------------\n";
-   cerr << "Loads a XYZRGB pointcloud and correspoding xy image coordinates (left stereo image) from the CRD format to the PCL, and visualizes the loaded pointcloud. The CRD format is described in the README file.\n";
-   cerr << "Usage: " << exec_name << " filePath \n";
-   cerr << "<filePath>: path to a CRD pointcloud file \n";
-   cerr << "\n";
-   cerr << "Example: ./read_crd ../testdata/mammal01_filterSegment_000.crd \n";
-   cerr << "----------------------------------------\n";
+  cerr << "----------------------------------------\n";
+  cerr << "Loads a XYZRGB pointcloud and correspoding xy image coordinates "
+          "(left stereo image) from the CRD format to the PCL, and visualizes "
+          "the pointcloud. The CRD format is described in the README file.\n";
+  cerr << "Usage: " << exec_name << " <file> \n";
+  cerr << "<file>: input CRD pointcloud file \n";
+  cerr << "\n";
+  cerr << "Example: ./read_crd ../testdata/mammal01_filterSegment_000.crd \n";
+  cerr << "----------------------------------------\n";
 }
 
-int main (int argc, char** argv)
-{
-  if (argc != 2)
-  {
+int main(int argc, char** argv) {
+  if (argc != 2) {
     usage(argv[0]);
-    exit(0);
+    exit(1);
   }
 
   string input_file(argv[1]);
 
-  //Load
+  // Load
   SOC2PCLReader reader;
-  pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZRGB>());
-  pcl::PointCloud<pcl::PointXY>::Ptr imXY (new pcl::PointCloud<pcl::PointXY>());
-  reader.readCrd(input_file,cloud,imXY);
-  
-  //Visualize
-  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
-  pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(cloud);
-  viewer->addPointCloud<pcl::PointXYZRGB> (cloud, rgb, "loaded pointcloud");
-  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "loaded pointcloud");
+  pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(
+      new pcl::PointCloud<pcl::PointXYZRGB>());
+  pcl::PointCloud<pcl::PointXY>::Ptr imXY(new pcl::PointCloud<pcl::PointXY>());
+  reader.read_crd(input_file, cloud, imXY);
+
+  // Visualize
+  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(
+      new pcl::visualization::PCLVisualizer("3D Viewer"));
+  pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgb(
+      cloud);
+  viewer->addPointCloud<pcl::PointXYZRGB>(cloud, rgb, "loaded pointcloud");
+  viewer->setPointCloudRenderingProperties(
+      pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "loaded pointcloud");
   viewer->spin();
 
   return (0);

@@ -1,6 +1,6 @@
 function [points,colors,imXY]=read_crd(file);
-% Author: Marianna Madry (madry@csc.kth.se)
-% Date: July 2013
+% Author: Marianna Madry (marianna.madry@gmail.com)
+% Date: July 2012
 % Loads a XYZ pointcloud, corresponding colors and xy image coordinates (left stereo image) to Matlab
 
  fid = fopen(file); % load 3D point coordinates in .syncpc format

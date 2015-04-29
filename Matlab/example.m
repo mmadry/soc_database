@@ -1,6 +1,6 @@
 function example();
-% Author: Marianna Madry (madry@csc.kth.se)
-% Date: July 2013
+% Author: Marianna Madry (marianna.madry@gmail.com)
+% Date: July 2012
 % Example of how to use 'read_crd.m' and 'read_syncpc.m' functions. Loaded pointclouds are visualize.
 % The CRD and SYNCPC format are described in the README file.
 

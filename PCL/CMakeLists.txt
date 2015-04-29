@@ -1,6 +1,3 @@
-# Author: Marianna Madry (madry@csc.kth.se)
-# Date: July 2013
-
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 project(SOC2PCLReader)
